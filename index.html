@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -17,6 +18,7 @@
   --color-main: #00c4a2;
   --color-text: #333;
   --color-link: #00866b;
+  --color-bg: #f7f7f7;
   --color-header-bg: #fff;
   --color-footer-bg: #222;
   --color-footer-text: #aaa;
@@ -39,6 +41,12 @@ a:hover { opacity: 0.75; }
 img { max-width: 100%; height: auto; display: block; }
 ul { list-style: none; }
 h2 { font-family: 'Montserrat', sans-serif; }
+
+.container {
+  max-width: var(--article);
+  margin: 0 auto;
+  padding: 0 24px;
+}
 
 /* ===== ヘッダー ===== */
 #header {
@@ -72,7 +80,10 @@ h2 { font-family: 'Montserrat', sans-serif; }
 #header.scrolled .logo .logo-white { display: none; }
 #header.scrolled .logo .logo-color { display: block; }
 
-nav ul { display: flex; gap: 32px; }
+nav ul {
+  display: flex;
+  gap: 32px;
+}
 nav a {
   font-family: 'Montserrat', sans-serif;
   font-size: 13px;
@@ -94,6 +105,7 @@ nav a::after {
   transition: transform 0.3s;
 }
 nav a:hover::after { transform: scaleX(1); }
+nav a:hover { opacity: 1; }
 
 /* スマホメニュー */
 .menu-btn {
@@ -232,18 +244,35 @@ section { position: relative; }
   padding: 8px 0;
   display: flex;
   align-items: center;
+  gap: 0;
   border-bottom: 1px solid #eee;
   flex-direction: row-reverse;
   justify-content: flex-end;
 }
 .news-list a { color: var(--color-text); font-size: 15px; }
-.news-list a:hover { color: var(--color-main); }
+.news-list a:hover { color: var(--color-main); opacity: 1; }
 .news-date {
   font-family: 'Azeret Mono', monospace;
   font-size: 1em;
   color: #666;
   margin-right: 20px;
   white-space: nowrap;
+}
+.more-btn {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 10px 32px;
+  border: 1px solid var(--color-main);
+  border-radius: 40px;
+  color: var(--color-main);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  transition: 0.3s;
+}
+.more-btn:hover {
+  background: var(--color-main);
+  color: #fff;
+  opacity: 1;
 }
 .btn-wrap { text-align: center; margin-top: 16px; }
 
@@ -267,8 +296,189 @@ section { position: relative; }
 #about .section-inner { text-align: center; }
 #about p { line-height: 3; }
 
-/* 以降はMEMBER, AUDITION, FOOTER, TOPボタン、レスポンシブ、フェードインまで前々回のクリーン版と同じ（省略せずに全部入れたい場合は言ってください） */
+/* ===== MEMBER ===== */
+#member { background: #fff; padding: 0; }
+#Type {
+  background-color: #000;
+  display: flex;
+  height: 600px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+#Type li {
+  width: 12.5%;
+  height: 100%;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: 35%;
+  opacity: 0.9;
+  transition: opacity 0.3s;
+}
+#Type li:nth-child(1) { background-image: url("Type_01.webp"); }
+#Type li:nth-child(2) { background-image: url("Type_02.webp"); }
+#Type li:nth-child(3) { background-image: url("Type_03.webp"); }
+#Type li:nth-child(4) { background-image: url("Type_04.webp"); }
+#Type li:nth-child(5) { background-image: url("Type_05.webp"); }
+#Type li:nth-child(6) { background-image: url("Type_06.webp"); }
+#Type li:nth-child(7) { background-image: url("Type_07.webp"); }
+#Type li:nth-child(8) { background-image: url("Type_08.webp"); }
+#Type li:hover { opacity: 1; }
+#Type li a { display: block; width: 100%; height: 100%; }
 
+/* ===== AUDITION ===== */
+#audition {
+  background-image: url("core_gb.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+#audition .section-inner { text-align: center; }
+
+.apply-btn {
+  display: inline-block;
+  margin: 12px 8px;
+  padding: 12px 32px;
+  border-radius: 40px;
+  background: linear-gradient(100deg, #2af598 0%, #009efd 100%);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s;
+  text-shadow: none;
+}
+.apply-btn:hover { opacity: 0.85; }
+
+/* ===== MATERIAL ===== */
+#material {
+  background-image: url("bg_2_1.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+  text-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+
+.material-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.material-card {
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+  transition: transform 0.3s;
+}
+.material-card:hover { transform: translateY(-4px); }
+.material-card a { color: #fff; display: block; }
+.material-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+.material-card-body { padding: 12px 16px; }
+.material-card h3 { font-size: 15px; margin-bottom: 4px; }
+.material-card time {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+}
+
+/* ===== フッター ===== */
+#footer {
+  background: var(--color-footer-bg);
+  color: var(--color-footer-text);
+}
+.footer-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 40px 24px 20px;
+  text-align: center;
+}
+.footer-logo { margin-bottom: 24px; display: flex; justify-content: center; }
+.footer-logo img { height: 27px; width: auto; }
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.footer-nav a { color: var(--color-footer-text); font-size: 13px; }
+.footer-nav a:hover { color: #fff; opacity: 1; }
+.copyright { font-size: 12px; }
+
+/* ===== TOPボタン ===== */
+#pagetop {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  background: var(--color-main);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 10px;
+  gap: 2px;
+  box-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 50;
+}
+#pagetop.visible { opacity: 1; visibility: visible; }
+#pagetop:hover { background: #00a888; }
+#pagetop svg { width: 16px; height: 16px; }
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 959px) {
+  nav { display: none; }
+  .menu-btn { display: flex; color: inherit; }
+
+  #main-visual { height: 100svh; }
+  .mv-text h1 { font-size: 2rem; }
+
+  #Type {
+    flex-direction: column;
+    height: auto;
+  }
+  #Type li {
+    width: 100% !important;
+    height: 120px !important;
+    background-position-y: 32%;
+  }
+
+  .material-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .section-inner { padding: 40px 20px; }
+}
+
+@media (max-width: 600px) {
+  .mv-text h1 { font-size: 7rem; line-height: 0.8; }
+  .material-grid { grid-template-columns: repeat(2, 1fr); }
+  #about p { line-height: 2.2; }
+}
+
+/* ===== フェードイン ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
 </style>
 </head>
 <body>
@@ -427,7 +637,7 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
-// スマホメニュー
+// ===== スマホメニュー =====
 const menuBtn = document.getElementById('menu-btn');
 const spMenu = document.getElementById('sp-menu');
 const spOverlay = document.getElementById('sp-overlay');
@@ -449,7 +659,20 @@ spClose.addEventListener('click', closeMenu);
 spOverlay.addEventListener('click', closeMenu);
 spMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
-// TOPボタン
+// ===== 動画 SP/PC 切り替え =====
+const video = document.getElementById('mv-video');
+// 動画ソースをSP/PCで切り替えたい場合はここを編集
+// function setVideoSrc() {
+//   const src = window.innerWidth < 960 ? 'header_top_light.mp4' : 'header_top.mp4';
+//   if (video.querySelector('source').src !== src) {
+//     video.querySelector('source').src = src;
+//     video.load();
+//   }
+// }
+// setVideoSrc();
+// window.addEventListener('resize', setVideoSrc);
+
+// ===== TOPへ =====
 const pagetop = document.getElementById('pagetop');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 300) {
@@ -462,7 +685,7 @@ pagetop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// フェードイン
+// ===== フェードイン =====
 const fadeEls = document.querySelectorAll('.fade-in');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -474,7 +697,7 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 fadeEls.forEach(el => observer.observe(el));
 
-// スムーススクロール
+// ===== スムーススクロール（同一ページ内リンク）=====
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const target = document.querySelector(a.getAttribute('href'));
