@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -17,6 +18,7 @@
   --color-main: #00c4a2;
   --color-text: #333;
   --color-link: #00866b;
+  --color-bg: #f7f7f7;
   --color-header-bg: #fff;
   --color-footer-bg: #222;
   --color-footer-text: #aaa;
@@ -39,6 +41,12 @@ a:hover { opacity: 0.75; }
 img { max-width: 100%; height: auto; display: block; }
 ul { list-style: none; }
 h2 { font-family: 'Montserrat', sans-serif; }
+
+.container {
+  max-width: var(--article);
+  margin: 0 auto;
+  padding: 0 24px;
+}
 
 /* ===== ヘッダー ===== */
 #header {
@@ -97,6 +105,7 @@ nav a::after {
   transition: transform 0.3s;
 }
 nav a:hover::after { transform: scaleX(1); }
+nav a:hover { opacity: 1; }
 
 /* スマホメニュー */
 .menu-btn {
@@ -235,12 +244,13 @@ section { position: relative; }
   padding: 8px 0;
   display: flex;
   align-items: center;
+  gap: 0;
   border-bottom: 1px solid #eee;
   flex-direction: row-reverse;
   justify-content: flex-end;
 }
 .news-list a { color: var(--color-text); font-size: 15px; }
-.news-list a:hover { color: var(--color-main); }
+.news-list a:hover { color: var(--color-main); opacity: 1; }
 .news-date {
   font-family: 'Azeret Mono', monospace;
   font-size: 1em;
@@ -248,28 +258,38 @@ section { position: relative; }
   margin-right: 20px;
   white-space: nowrap;
 }
+.more-btn {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 10px 32px;
+  border: 1px solid var(--color-main);
+  border-radius: 40px;
+  color: var(--color-main);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  transition: 0.3s;
+}
+.more-btn:hover {
+  background: var(--color-main);
+  color: #fff;
+  opacity: 1;
+}
 .btn-wrap { text-align: center; margin-top: 16px; }
 
 /* ===== ABOUT ===== */
 #about {
-  /* ← WP版から完全移植した10層グラデーション（これでライブ版と同一になります） */
-  background-image: 
+  background-image:
     linear-gradient(246deg, rgba(234,234,234,0.04) 0%, rgba(234,234,234,0.04) 33.3%, rgba(69,69,69,0.04) 33.3%, rgba(69,69,69,0.04) 66.6%, rgba(189,189,189,0.04) 66.6%, rgba(189,189,189,0.04) 99.9%),
-    linear-gradient(81deg, rgba(126,126,126,0.05) 0%, rgba(126,126,126,0.05) 33.3%, rgba(237,237,237,0.05) 33.3%, rgba(237,237,237,0.05) 66.6%, rgba(74,74,74,0.05) 66.6%, rgba(74,74,74,0.05) 99.9%),
-    linear-gradient(14deg, rgba(3,3,3,0.08) 0%, rgba(3,3,3,0.08) 33.3%, rgba(156,156,156,0.08) 33.3%, rgba(156,156,156,0.08) 66.6%, rgba(199,199,199,0.08) 66.6%, rgba(199,199,199,0.08) 99.9%),
-    linear-gradient(323deg, rgba(82,82,82,0.06) 0%, rgba(82,82,82,0.06) 33.3%, rgba(179,179,179,0.06) 33.3%, rgba(179,179,179,0.06) 66.6%, rgba(212,212,212,0.06) 66.6%, rgba(212,212,212,0.06) 99.9%),
-    linear-gradient(32deg, rgba(70,70,70,0.02) 0%, rgba(70,70,70,0.02) 33.3%, rgba(166,166,166,0.02) 33.3%, rgba(166,166,166,0.02) 66.6%, rgba(53,53,53,0.02) 66.6%, rgba(53,53,53,0.02) 99.9%),
-    linear-gradient(38deg, rgba(129,129,129,0.09) 0%, rgba(129,129,129,0.09) 33.3%, rgba(38,38,38,0.09) 33.3%, rgba(38,38,38,0.09) 66.6%, rgba(153,153,153,0.09) 66.6%, rgba(153,153,153,0.09) 99.9%),
-    linear-gradient(63deg, rgba(51,51,51,0.02) 0%, rgba(51,51,51,0.02) 33.3%, rgba(12,12,12,0.02) 33.3%, rgba(12,12,12,0.02) 66.6%, rgba(158,158,158,0.02) 66.6%, rgba(158,158,158,0.02) 99.9%),
-    linear-gradient(227deg, rgba(63,63,63,0.03) 0%, rgba(63,63,63,0.03) 33.3%, rgba(9,9,9,0.03) 33.3%, rgba(9,9,9,0.03) 66.6%, rgba(85,85,85,0.03) 66.6%, rgba(85,85,85,0.03) 99.9%),
-    linear-gradient(103deg, rgba(247,247,247,0.07) 0%, rgba(247,247,247,0.07) 33.3%, rgba(93,93,93,0.07) 33.3%, rgba(93,93,93,0.07) 66.6%, rgba(208,208,208,0.07) 66.6%, rgba(208,208,208,0.07) 99%),
     linear-gradient(0deg, #0b91d7, #6efc29);
   color: #fff;
   text-shadow: 0 0 6px rgba(0,0,0,0.5);
 }
 #about .section-inner { text-align: center; }
 #about p { line-height: 3; }
-
+.top_about{
+#about {
+background-image: linear-gradient(246deg, rgba(234, 234, 234, 0.04) 0%, rgba(234, 234, 234, 0.04) 33.3%,rgba(69, 69, 69, 0.04) 33.3%, rgba(69, 69, 69, 0.04) 66.6%,rgba(189, 189, 189, 0.04) 66.6%, rgba(189, 189, 189, 0.04) 99.89999999999999%),linear-gradient(81deg, rgba(126, 126, 126, 0.05) 0%, rgba(126, 126, 126, 0.05) 33.3%,rgba(237, 237, 237, 0.05) 33.3%, rgba(237, 237, 237, 0.05) 66.6%,rgba(74, 74, 74, 0.05) 66.6%, rgba(74, 74, 74, 0.05) 99.89999999999999%),linear-gradient(14deg, rgba(3, 3, 3, 0.08) 0%, rgba(3, 3, 3, 0.08) 33.3%,rgba(156, 156, 156, 0.08) 33.3%, rgba(156, 156, 156, 0.08) 66.6%,rgba(199, 199, 199, 0.08) 66.6%, rgba(199, 199, 199, 0.08) 99.89999999999999%),linear-gradient(323deg, rgba(82, 82, 82, 0.06) 0%, rgba(82, 82, 82, 0.06) 33.3%,rgba(179, 179, 179, 0.06) 33.3%, rgba(179, 179, 179, 0.06) 66.6%,rgba(212, 212, 212, 0.06) 66.6%, rgba(212, 212, 212, 0.06) 99.89999999999999%),linear-gradient(32deg, rgba(70, 70, 70, 0.02) 0%, rgba(70, 70, 70, 0.02) 33.3%,rgba(166, 166, 166, 0.02) 33.3%, rgba(166, 166, 166, 0.02) 66.6%,rgba(53, 53, 53, 0.02) 66.6%, rgba(53, 53, 53, 0.02) 99.89999999999999%),linear-gradient(38deg, rgba(129, 129, 129, 0.09) 0%, rgba(129, 129, 129, 0.09) 33.3%,rgba(38, 38, 38, 0.09) 33.3%, rgba(38, 38, 38, 0.09) 66.6%,rgba(153, 153, 153, 0.09) 66.6%, rgba(153, 153, 153, 0.09) 99.89999999999999%),linear-gradient(63deg, rgba(51, 51, 51, 0.02) 0%, rgba(51, 51, 51, 0.02) 33.3%,rgba(12, 12, 12, 0.02) 33.3%, rgba(12, 12, 12, 0.02) 66.6%,rgba(158, 158, 158, 0.02) 66.6%, rgba(158, 158, 158, 0.02) 99.89999999999999%),linear-gradient(227deg, rgba(63, 63, 63, 0.03) 0%, rgba(63, 63, 63, 0.03) 33.3%,rgba(9, 9, 9, 0.03) 33.3%, rgba(9, 9, 9, 0.03) 66.6%,rgba(85, 85, 85, 0.03) 66.6%, rgba(85, 85, 85, 0.03) 99.89999999999999%),linear-gradient(103deg, rgba(247, 247, 247, 0.07) 0%, rgba(247, 247, 247, 0.07) 33.3%,rgba(93, 93, 93, 0.07) 33.3%, rgba(93, 93, 93, 0.07) 66.6%,rgba(208, 208, 208, 0.07) 66.6%, rgba(208, 208, 208, 0.07) 99%),linear-gradient(0deg, #0b91d7,#6efc29) !important;}
+}
 /* ===== MEMBER ===== */
 #member { background: #fff; padding: 0; }
 #Type {
@@ -325,6 +345,44 @@ section { position: relative; }
 }
 .apply-btn:hover { opacity: 0.85; }
 
+/* ===== MATERIAL ===== */
+#material {
+  background-image: url("bg_2_1.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+  text-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+
+.material-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.material-card {
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+  transition: transform 0.3s;
+}
+.material-card:hover { transform: translateY(-4px); }
+.material-card a { color: #fff; display: block; }
+.material-card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+.material-card-body { padding: 12px 16px; }
+.material-card h3 { font-size: 15px; margin-bottom: 4px; }
+.material-card time {
+  font-family: 'Azeret Mono', monospace;
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+}
+
 /* ===== フッター ===== */
 #footer {
   background: var(--color-footer-bg);
@@ -345,8 +403,306 @@ section { position: relative; }
   margin-bottom: 20px;
 }
 .footer-nav a { color: var(--color-footer-text); font-size: 13px; }
-.footer-nav a:hover { color: #fff; }
+.footer-nav a:hover { color: #fff; opacity: 1; }
 .copyright { font-size: 12px; }
 
 /* ===== TOPボタン ===== */
-#pag
+#pagetop {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  background: var(--color-main);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 10px;
+  gap: 2px;
+  box-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 50;
+}
+#pagetop.visible { opacity: 1; visibility: visible; }
+#pagetop:hover { background: #00a888; }
+#pagetop svg { width: 16px; height: 16px; }
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 959px) {
+  nav { display: none; }
+  .menu-btn { display: flex; color: inherit; }
+
+  #main-visual { height: 100svh; }
+  .mv-text h1 { font-size: 2rem; }
+
+  #Type {
+    flex-direction: column;
+    height: auto;
+  }
+  #Type li {
+    width: 100% !important;
+    height: 120px !important;
+    background-position-y: 32%;
+  }
+
+  .material-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .section-inner { padding: 40px 20px; }
+}
+
+@media (max-width: 600px) {
+  .mv-text h1 { font-size: 7rem; line-height: 0.8; }
+  .material-grid { grid-template-columns: repeat(2, 1fr); }
+  #about p { line-height: 2.2; }
+}
+
+/* ===== フェードイン ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+</style>
+</head>
+<body>
+
+<!-- SP overlay -->
+<div class="sp-overlay" id="sp-overlay"></div>
+
+<!-- SP menu -->
+<div id="sp-menu">
+  <button class="sp-close" id="sp-close" aria-label="閉じる">×</button>
+  <div style="margin-bottom:12px;font-family:'Montserrat',sans-serif;font-size:12px;color:#aaa;">MENU</div>
+  <ul>
+    <li><a href="#about">ABOUT</a></li>
+    <li><a href="#member">MEMBER</a></li>
+    <li><a href="#audition">AUDITION</a></li>
+    <li><a href="guideline.html">GUIDELINE</a></li>
+  </ul>
+</div>
+
+<!-- ヘッダー -->
+<header id="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <img class="logo-white" src="logo_navi_wh.webp" alt="ReLaB" width="200" height="43">
+      <img class="logo-color" src="logo_navi_col.webp" alt="ReLaB" width="200" height="43">
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#member">MEMBER</a></li>
+        <li><a href="#audition">AUDITION</a></li>
+        <li><a href="guideline.html">GUIDELINE</a></li>
+      </ul>
+    </nav>
+    <button class="menu-btn" id="menu-btn" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- メインビジュアル -->
+<section id="main-visual">
+  <video playsinline autoplay loop muted id="mv-video">
+    <!-- ファイルのパスをここに設定してください -->
+    <source src="header_top_light.mp4" type="video/mp4">
+  </video>
+  <div class="mv-text">
+    <h1>真剣に 戦略的に<br>挑戦的に 遊ぶ。</h1>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="section-inner">
+    <h2 class="section-title fade-in">NEWS</h2>
+    <ul class="news-list fade-in">
+      <li>
+        現在休止中
+        <time class="news-date">2024-12-16</time>
+      </li>
+      <li>
+        ガイドライン改定に関するお知らせと補足
+        <time class="news-date">2023-08-02</time>
+      </li>
+      <li>
+        翡翠ルメリ活動終了に関するお知らせ
+        <time class="news-date">2023-04-30</time>
+      </li>
+      <li>
+        公式HPリニューアルのお知らせ
+        <time class="news-date">2023-04-20</time>
+      </li>
+      <li>
+        amazon欲しい物リストからの荷物のお受け取りに関しまして
+        <time class="news-date">2023-03-01</time>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <h2 class="section-title fade-in">ABOUT</h2>
+    <p class="fade-in">
+      ReLaB(リラボ)はLive2Dを用いた高性能・多機能モデルを実験・開発する研究所です。<br>
+      イラストやモデリングは勿論のこと、素材や公式サイトに至るまで、 一貫して当所にて行なえることを一つの強みとし、統一感のある世界感をもつVTUBERグループを目指します。<br>
+      飽和状態の分野に後発として切り込んでいくのは並大抵のことではありませんが、実験的な試みも導入しながら個人だからできることを模索しつつ、<br>
+      真剣に 戦略的に 挑戦的に 遊びます。
+    </p>
+  </div>
+</section>
+
+<!-- MEMBER -->
+<section id="member">
+  <ul id="Type">
+    <li class="fade-in"><a href=""></a></li>
+    <li class="fade-in"><a href=""></a></li>
+    <li class="fade-in"><a href=""></a></li>
+    <li class="fade-in"><a href=""></a></li>
+    <li class="fade-in"><a href=""></a></li>
+    <li class="fade-in"><a href=""></a></li>
+    <li class="fade-in"><a href=""></a></li>
+    <li class="fade-in"><a href=""></a></li>
+  </ul>
+</section>
+
+<!-- AUDITION -->
+<section id="audition">
+  <div class="section-inner">
+    <h2 class="section-title fade-in">AUDITION</h2>
+    <s></s><p class="fade-in" style="text-align:center;margin-bottom:24px;">
+      <strong>当ラボでは配信用アンドロイドの動力源である、優秀なコアを探しています。</strong>
+    </p></s>
+    <p class="fade-in" style="text-align:center;margin-bottom:24px;">
+      ※現在休止中。
+    </p>
+    <div class="btn-wrap fade-in">
+      <a href="" target="_blank" rel="noopener noreferrer" class="apply-btn">常設応募フォーム</a>
+    </div>
+    <p class="fade-in" style="text-align:center;margin:24px 0 12px;">活動を手伝ってくださるクリエイター様の外注登録はこちら。</p>
+    <div class="btn-wrap fade-in">
+      <a href="" target="_blank" rel="noopener noreferrer" class="apply-btn">外注登録フォーム</a>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="relab_logo.webp" alt="ReLaB" width="150" height="27" loading="lazy">
+    </div>
+    <nav class="footer-nav">
+      <a href="privacy-policy.html">プライバシーポリシー</a>
+      <a href="guideline.html">ガイドライン</a>
+    </nav>
+    <p class="copyright">Copyright © 2021-2026 ReLaB All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- TOPへ -->
+<button id="pagetop" aria-label="ページトップへ">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  <span>TOP</span>
+</button>
+
+<script>
+// ===== ヘッダー スクロール =====
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+}, { passive: true });
+
+// ===== スマホメニュー =====
+const menuBtn = document.getElementById('menu-btn');
+const spMenu = document.getElementById('sp-menu');
+const spOverlay = document.getElementById('sp-overlay');
+const spClose = document.getElementById('sp-close');
+
+function openMenu() {
+  spMenu.classList.add('open');
+  spOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  spMenu.classList.remove('open');
+  spOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+menuBtn.addEventListener('click', openMenu);
+spClose.addEventListener('click', closeMenu);
+spOverlay.addEventListener('click', closeMenu);
+spMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+// ===== 動画 SP/PC 切り替え =====
+const video = document.getElementById('mv-video');
+// 動画ソースをSP/PCで切り替えたい場合はここを編集
+// function setVideoSrc() {
+//   const src = window.innerWidth < 960 ? 'header_top_light.mp4' : 'header_top.mp4';
+//   if (video.querySelector('source').src !== src) {
+//     video.querySelector('source').src = src;
+//     video.load();
+//   }
+// }
+// setVideoSrc();
+// window.addEventListener('resize', setVideoSrc);
+
+// ===== TOPへ =====
+const pagetop = document.getElementById('pagetop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    pagetop.classList.add('visible');
+  } else {
+    pagetop.classList.remove('visible');
+  }
+}, { passive: true });
+pagetop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ===== フェードイン =====
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+fadeEls.forEach(el => observer.observe(el));
+
+// ===== スムーススクロール（同一ページ内リンク）=====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const offset = 64;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
