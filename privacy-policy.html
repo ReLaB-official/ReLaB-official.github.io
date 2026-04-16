@@ -1,41 +1,377 @@
-VtuberグループReLaB（以下、「当グループ」といいます。）は、個人情報の保護に関する法律（個人情報保護法）その他の関係法令を遵守するとともに、以下のとおりプライバシーポリシーを定め、個人情報を適切に取扱います。
-第1条（個人情報）
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, viewport-fit=cover">
+<title>プライバシーポリシー | ReLaB</title>
+<meta name="description" content="ReLaBのプライバシーポリシーです。個人情報の取り扱いについて記載しています。">
+<link rel="icon" href="https://relab.work/wp-content/uploads/2023/04/cropped-logo_ico-32x32.png" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@600&family=Montserrat&display=swap" rel="stylesheet">
 
-「個人情報」とは，個人情報保護法にいう「個人情報」を指すものとし，生存する個人に関する情報であって，当該情報に含まれる氏名，生年月日，住所，電話番号，連絡先その他の記述等により特定の個人を識別できる情報及び容貌，指紋，声紋にかかるデータ，及び健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）を指します。
-第2条（個人情報の取得）
+<style>
+/* ===== リセット & ベース ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-当グループは、適正に個人情報を取得し、偽りおよびその他不正な手段等により個人情報を取得することはありません。当グループは、ご本人から個人情報をご提供いただく場合、当グループが取得する旨をご本人に明示、または通知もしくは公表いたします。
-第3条（個人情報を収集・利用する目的）
+:root {
+  --color-main: #00c4a2;
+  --color-text: #333;
+  --color-link: #00866b;
+  --color-header-bg: #fff;
+  --color-footer-bg: #222;
+  --color-footer-text: #aaa;
+  --swl-color_shadow: rgba(0,0,0,.12);
+  --container: 1200px;
+}
 
-取得した個人情報は、以下に記載する利用目的の範囲内で適正に取り扱います。
+html { scroll-behavior: smooth; }
 
-    ご本人の同意がある場合
-    当グループの商品・サービスの円滑な提供、維持、改善のため
-    当グループに関するお問い合わせに回答するため（本人確認を行うことを含む）
-    当グループの規約に違反する行為に対応するため
-    当グループの各種サービスに関する重要な通知をお知らせするため
-    その他、上記の利用目的に付随する目的のため
+body {
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 16px;
+  color: var(--color-text);
+  background: #000;
+  line-height: 1.8;
+}
 
-第4条（個人情報の第三者提供）
+a { color: var(--color-link); text-decoration: none; transition: 0.4s; }
+a:hover { opacity: 0.75; }
+img { max-width: 100%; height: auto; display: block; }
+ul { list-style: none; }
+h2 { font-family: 'Montserrat', sans-serif; }
 
-当グループは，あらかじめお客様の同意を得ることなく、第三者に個人情報を提供することはありません。ただし、個人情報保護法その他の法令で認められる場合、以下のいずれかに該当する場合を除きます。
+/* ===== ヘッダー ===== */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  transition: background 0.4s, box-shadow 0.4s;
+  background: var(--color-header-bg);
+  box-shadow: 0 2px 4px var(--swl-color_shadow);
+}
 
-    ご本人の同意がある場合
-    本人または第三者の生命，身体，財産その他の権利利益を害するおそれがある場合
-    当グループの各種サービスの提供、維持に著しい支障を及ぼすおそれがある場合
-    その他法令に違反することとなる場合
+.header-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-第5条（個人情報の訂正および削除）
+.logo img { height: 40px; width: auto; }
+.logo .logo-color { display: block; }
 
-ご本人の個人情報の照会、、訂正、追加、削除、利用停止、提供停止および消去等を希望される場合には、ご本人様確認および情報の真偽確認のうえ、対応させていただきます。
-第6条（情報収集モジュール）
+nav ul { display: flex; gap: 32px; }
+nav a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: inherit;
+  position: relative;
+  padding-bottom: 4px;
+}
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--color-main);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+nav a:hover::after { transform: scaleX(1); }
 
-当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を使用しています。このGoogleアナリティクスはデータの収集のためにCookieを使用しています。このデータは匿名で収集されており、個人を特定するものではありません。
+/* スマホメニュー */
+.menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.menu-btn span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+  transition: 0.3s;
+}
 
-この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。この規約に関しての詳細はGoogleアナリティクスサービス利用規約のページやGoogleポリシーと規約ページをご覧ください。
-第7条（プライバシーポリシーの変更）
+#sp-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100vh;
+  background: #fff;
+  z-index: 200;
+  padding: 64px 32px 32px;
+  box-shadow: -4px 0 16px rgba(0,0,0,0.2);
+  transform: translateX(100%);
+  transition: transform 0.4s;
+}
+#sp-menu.open { transform: translateX(0); display: block; }
+#sp-menu ul { flex-direction: column; gap: 0; }
+#sp-menu li { border-bottom: 1px solid #eee; }
+#sp-menu a {
+  display: block;
+  padding: 16px 0;
+  color: var(--color-text);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+.sp-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 150;
+}
+.sp-overlay.open { display: block; }
+.sp-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--color-text);
+}
 
-本ポリシーの内容はお客様に通知することなく変更することができるものとします。変更後のプライバシーポリシーは，本ウェブサイトに掲載したときから効力を生じるものとします。
-第8条（お問い合わせ）
+/* ===== プライバシーポリシー専用 ===== */
+.guideline-wrapper {
+  background: #f8f8f8;
+  padding-top: 64px;
+  padding-bottom: 60px;
+  min-height: 100vh;
+}
 
-本ポリシーに関するお問い合わせは、お問い合わせからお願いいたします。
+.page-title-area {
+  text-align: center;
+  height: 240px;
+  background-image: url("header_light.webp");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-title-area span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-title-area h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5em;
+  margin: 0;
+  color: #fff;
+  text-shadow: 0px 0px 5px rgba(0,0,0,0.8);
+  line-height: 1;
+}
+
+.page-title-area .subtitle {
+  font-size: 1.2rem;
+  color: #fff;
+  text-shadow: 0px 0px 5px rgba(0,0,0,0.8);
+  margin-top: 4px;
+}
+
+/* プライバシーポリシー本文 */
+.privacy-content {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 40px 60px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  line-height: 1.9;
+}
+
+.privacy-content h2 {
+  font-size: 1.55rem;
+  margin: 2.8em 0 1.2em;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--color-main);
+}
+
+.privacy-content p {
+  margin-bottom: 1.4em;
+}
+
+.privacy-content ul {
+  padding-left: 1.6em;
+  margin: 1.4em 0;
+}
+
+.privacy-content li {
+  margin-bottom: 0.9em;
+}
+
+/* レスポンシブ */
+@media (max-width: 959px) {
+  .guideline-wrapper { padding-top: 100px; }
+  .privacy-content { padding: 30px 25px; }
+  .page-title-area h1 { font-size: 1.35em; }
+}
+</style>
+</head>
+<body>
+
+<!-- SP overlay -->
+<div class="sp-overlay" id="sp-overlay"></div>
+
+<!-- SP menu -->
+<div id="sp-menu">
+  <button class="sp-close" id="sp-close" aria-label="閉じる">×</button>
+  <div style="margin-bottom:12px;font-family:'Montserrat',sans-serif;font-size:12px;color:#aaa;">MENU</div>
+  <ul>
+    <li><a href="https://relab-official.github.io/">TOP</a></li>
+    <li><a href="index.html#about">ABOUT</a></li>
+    <li><a href="index.html#member">MEMBER</a></li>
+    <li><a href="index.html#audition">AUDITION</a></li>
+    <li><a href="guideline.html">GUIDELINE</a></li>
+  </ul>
+</div>
+
+<!-- ヘッダー -->
+<header id="header">
+  <div class="header-inner">
+    <a href="https://relab-official.github.io/" class="logo">
+      <img class="logo-color" src="logo_navi_col.webp" alt="ReLaB" width="200" height="43">
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html#about">ABOUT</a></li>
+        <li><a href="index.html#member">MEMBER</a></li>
+        <li><a href="index.html#audition">AUDITION</a></li>
+        <li><a href="guideline.html">GUIDELINE</a></li>
+      </ul>
+    </nav>
+    <button class="menu-btn" id="menu-btn" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- プライバシーポリシー本体 -->
+<div class="guideline-wrapper">
+  <div class="page-title-area">
+    <span>
+      <h1>プライバシーポリシー</h1>
+      <div class="subtitle">– privacy policy –</div>
+    </span>
+  </div>
+
+  <div class="privacy-content">
+    <h2>第1条（個人情報）</h2>
+    <p>「個人情報」とは，個人情報保護法にいう「個人情報」を指すものとし，生存する個人に関する情報であって，当該情報に含まれる氏名，生年月日，住所，電話番号，連絡先その他の記述等により特定の個人を識別できる情報及び容貌，指紋，声紋にかかるデータ，及び健康保険証の保険者番号などの当該情報単体から特定の個人を識別できる情報（個人識別情報）を指します。</p>
+
+    <h2>第2条（個人情報の取得）</h2>
+    <p>当グループは、適正に個人情報を取得し、偽りおよびその他不正な手段等により個人情報を取得することはありません。当グループは、ご本人から個人情報をご提供いただく場合、当グループが取得する旨をご本人に明示、または通知もしくは公表いたします。</p>
+
+    <h2>第3条（個人情報を収集・利用する目的）</h2>
+    <p>取得した個人情報は、以下に記載する利用目的の範囲内で適正に取り扱います。</p>
+    <ul>
+      <li>ご本人の同意がある場合</li>
+      <li>当グループの商品・サービスの円滑な提供、維持、改善のため</li>
+      <li>当グループに関するお問い合わせに回答するため（本人確認を行うことを含む）</li>
+      <li>当グループの規約に違反する行為に対応するため</li>
+      <li>当グループの各種サービスに関する重要な通知をお知らせするため</li>
+      <li>その他、上記の利用目的に付随する目的のため</li>
+    </ul>
+
+    <h2>第4条（個人情報の第三者提供）</h2>
+    <p>当グループは，あらかじめお客様の同意を得ることなく、第三者に個人情報を提供することはありません。ただし、個人情報保護法その他の法令で認められる場合、以下のいずれかに該当する場合を除きます。</p>
+    <ul>
+      <li>ご本人の同意がある場合</li>
+      <li>本人または第三者の生命，身体，財産その他の権利利益を害するおそれがある場合</li>
+      <li>当グループの各種サービスの提供、維持に著しい支障を及ぼすおそれがある場合</li>
+      <li>その他法令に違反することとなる場合</li>
+    </ul>
+
+    <h2>第5条（個人情報の訂正および削除）</h2>
+    <p>ご本人の個人情報の照会、訂正、追加、削除、利用停止、提供停止および消去等を希望される場合には、ご本人様確認および情報の真偽確認のうえ、対応させていただきます。</p>
+
+    <h2>第6条（情報収集モジュール）</h2>
+    <p>当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を使用しています。このGoogleアナリティクスはデータの収集のためにCookieを使用しています。このデータは匿名で収集されており、個人を特定するものではありません。</p>
+    <p>この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。この規約に関しての詳細は<a href="https://marketingplatform.google.com/about/analytics/terms/jp/" target="_blank">Googleアナリティクスサービス利用規約</a>のページや<a href="https://policies.google.com/technologies/ads?hl=ja" target="_blank">Googleポリシーと規約</a>ページをご覧ください。</p>
+
+    <h2>第7条（プライバシーポリシーの変更）</h2>
+    <p>本ポリシーの内容はお客様に通知することなく変更することができるものとします。変更後のプライバシーポリシーは，本ウェブサイトに掲載したときから効力を生じるものとします。</p>
+
+    <h2>第8条（お問い合わせ）</h2>
+    <p>本ポリシーに関するお問い合わせは、<a href="https://relab.work/contact/" target="_blank">お問い合わせ</a>からお願いいたします。</p>
+  </div>
+</div>
+
+<!-- フッター -->
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="relab_logo.webp" alt="ReLaB" width="150" height="27" loading="lazy">
+    </div>
+    <nav class="footer-nav">
+      <a href="privacy-policy.html">プライバシーポリシー</a>
+      <a href="guideline.html">ガイドライン</a>
+    </nav>
+    <p class="copyright">Copyright © 2021-2026 ReLaB All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- TOPへ -->
+<button id="pagetop" aria-label="ページトップへ">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  <span>TOP</span>
+</button>
+
+<script>
+// スマホメニュー
+const menuBtn = document.getElementById('menu-btn');
+const spMenu = document.getElementById('sp-menu');
+const spOverlay = document.getElementById('sp-overlay');
+const spClose = document.getElementById('sp-close');
+
+function openMenu() {
+  spMenu.classList.add('open');
+  spOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  spMenu.classList.remove('open');
+  spOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+menuBtn.addEventListener('click', openMenu);
+spClose.addEventListener('click', closeMenu);
+spOverlay.addEventListener('click', closeMenu);
+
+// TOPボタン
+const pagetop = document.getElementById('pagetop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    pagetop.classList.add('visible');
+  } else {
+    pagetop.classList.remove('visible');
+  }
+}, { passive: true });
+pagetop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+</body>
+</html>
