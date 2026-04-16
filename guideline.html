@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@600&family=Montserrat&display=swap" rel="stylesheet">
 
 <style>
-/* ===== index.htmlから共通のスタイルをそのまま流用 ===== */
+/* ===== リセット & ベース ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -40,30 +40,222 @@ img { max-width: 100%; height: auto; display: block; }
 ul { list-style: none; }
 h2 { font-family: 'Montserrat', sans-serif; }
 
-/* ヘッダー・スマホメニュー・メインビジュアルなどはindexと同じなので省略（そのままコピーしてください） */
-/* ここにindex.htmlの<header>〜<script>までの共通部分をすべて貼り付けてください */
+/* ===== ヘッダー ===== */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  transition: background 0.4s, box-shadow 0.4s;
+  color: #fff;
+}
+#header.scrolled {
+  background: var(--color-header-bg);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  color: var(--color-text);
+}
+
+.header-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo img { height: 40px; width: auto; }
+.logo .logo-white { display: block; }
+.logo .logo-color { display: none; }
+#header.scrolled .logo .logo-white { display: none; }
+#header.scrolled .logo .logo-color { display: block; }
+
+nav ul { display: flex; gap: 32px; }
+nav a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: inherit;
+  position: relative;
+  padding-bottom: 4px;
+}
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--color-main);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+nav a:hover::after { transform: scaleX(1); }
+
+/* スマホメニュー */
+.menu-btn {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.menu-btn span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: currentColor;
+  transition: 0.3s;
+}
+
+#sp-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100vh;
+  background: #fff;
+  z-index: 200;
+  padding: 64px 32px 32px;
+  box-shadow: -4px 0 16px rgba(0,0,0,0.2);
+  transform: translateX(100%);
+  transition: transform 0.4s;
+}
+#sp-menu.open { transform: translateX(0); display: block; }
+#sp-menu ul { flex-direction: column; gap: 0; }
+#sp-menu li { border-bottom: 1px solid #eee; }
+#sp-menu a {
+  display: block;
+  padding: 16px 0;
+  color: var(--color-text);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+.sp-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 150;
+}
+.sp-overlay.open { display: block; }
+.sp-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+/* ===== セクション共通 ===== */
+section { position: relative; }
+
+.section-inner {
+  max-width: var(--article);
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+
+/* ===== フッター ===== */
+#footer {
+  background: var(--color-footer-bg);
+  color: var(--color-footer-text);
+}
+.footer-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 40px 24px 20px;
+  text-align: center;
+}
+.footer-logo { margin-bottom: 24px; display: flex; justify-content: center; }
+.footer-logo img { height: 27px; width: auto; }
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.footer-nav a { color: var(--color-footer-text); font-size: 13px; }
+.footer-nav a:hover { color: #fff; }
+.copyright { font-size: 12px; }
+
+/* ===== TOPボタン ===== */
+#pagetop {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  background: var(--color-main);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 10px;
+  gap: 2px;
+  box-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 50;
+}
+#pagetop.visible { opacity: 1; visibility: visible; }
+#pagetop:hover { background: #00a888; }
+#pagetop svg { width: 16px; height: 16px; }
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 959px) {
+  nav { display: none; }
+  .menu-btn { display: flex; color: inherit; }
+
+  .section-inner { padding: 40px 20px; }
+}
+
+/* ===== フェードイン ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
 
 /* ===== ガイドライン専用スタイル ===== */
 .guideline-content {
   max-width: 820px;
-  margin: 0 auto;
-  padding: 40px 24px;
+  margin: 80px auto 60px;
+  padding: 50px 40px;
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
 }
 
 .guideline-content h1 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   text-align: center;
   margin-bottom: 8px;
   color: #222;
 }
 
 .guideline-content .subtitle {
-  font-size: 1.1rem;
   text-align: center;
+  font-size: 1.15rem;
   color: var(--color-main);
   margin-bottom: 40px;
   font-weight: 600;
@@ -71,131 +263,218 @@ h2 { font-family: 'Montserrat', sans-serif; }
 
 .guideline-content h2 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
-  margin: 48px 0 20px;
+  font-size: 1.55rem;
+  margin: 50px 0 24px;
   padding-bottom: 12px;
   border-bottom: 3px solid var(--color-main);
   color: #222;
 }
 
 .guideline-content p {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   line-height: 1.9;
 }
 
 .guideline-content ul {
-  padding-left: 24px;
-  margin-bottom: 28px;
+  padding-left: 28px;
+  margin-bottom: 32px;
 }
 
 .guideline-content li {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   position: relative;
 }
 
 .guideline-content li::before {
   content: "・";
   position: absolute;
-  left: -20px;
+  left: -24px;
   color: var(--color-main);
-  font-weight: bold;
+  font-size: 1.3em;
 }
 
 .footer-note {
-  margin-top: 60px;
+  margin-top: 70px;
   padding-top: 30px;
   border-top: 1px solid #eee;
+  color: #555;
   font-size: 0.95rem;
-  color: #666;
-  line-height: 1.8;
+  line-height: 1.85;
 }
 
-/* レスポンシブ調整 */
 @media (max-width: 959px) {
   .guideline-content {
-    padding: 30px 20px;
-    border-radius: 0;
+    margin: 60px 20px;
+    padding: 35px 25px;
   }
-  .guideline-content h1 { font-size: 1.9rem; }
+  .guideline-content h1 { font-size: 2rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- SP overlay と SP menu（index.htmlと同じものをそのままコピー） -->
-<!-- ヘッダー（index.htmlと同じものをそのままコピー） -->
+<!-- SP overlay -->
+<div class="sp-overlay" id="sp-overlay"></div>
 
-<!-- メインコンテンツ -->
-<section id="guideline" style="padding-top: 80px; background: #f8f8f8;">
-  <div class="section-inner" style="max-width: var(--article);">
-    <div class="guideline-content">
-      <h1>ガイドライン | ReLaB</h1>
-      <p class="subtitle">ガイドライン – Guideline –</p>
+<!-- SP menu -->
+<div id="sp-menu">
+  <button class="sp-close" id="sp-close" aria-label="閉じる">×</button>
+  <div style="margin-bottom:12px;font-family:'Montserrat',sans-serif;font-size:12px;color:#aaa;">MENU</div>
+  <ul>
+    <li><a href="index.html">TOP</a></li>
+    <li><a href="index.html#about">ABOUT</a></li>
+    <li><a href="index.html#member">MEMBER</a></li>
+    <li><a href="index.html#audition">AUDITION</a></li>
+    <li><a href="guideline.html">GUIDELINE</a></li>
+  </ul>
+</div>
 
-      <p>当グループのコンテンツをより多くの皆様に親しんで頂くためのガイドラインです。</p>
-      <p>皆様の二次創作によって、運営とライバーだけでなく皆様と一緒にコンテンツを盛り上げていければと存じます。本ガイドラインの内容とその他ルールやマナーを守って、二次創作活動をお楽しみください。</p>
-
-      <h2>1.総則</h2>
+<!-- ヘッダー -->
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img class="logo-white" src="logo_navi_wh.webp" alt="ReLaB" width="200" height="43">
+      <img class="logo-color" src="logo_navi_col.webp" alt="ReLaB" width="200" height="43">
+    </a>
+    <nav>
       <ul>
-        <li>ReLaB所属ライバーのキャラクター及びこれに関するイラスト（以下「本コンテンツ」という）の著作権は、著作者であるイラストレーターに帰属します。</li>
-        <li>皆様が本コンテンツの二次的創作物を公開した時点で、本ガイドラインの内容のすべてに同意をしていただいたものとみなします。</li>
-        <li>二次創作活動は個人での利用のみとし、本ガイドラインの内容に沿う形であれば、ReLaBへの申請や連絡は不要です。</li>
-        <li>二次創作活動によって発生する収益は、個人の趣味の範囲内での活動であれば許容されます。ただし、ファン活動の範囲を超えた事業目的での二次創作は禁止させて頂きます。</li>
-        <li>公式の販売物と誤解を招くような二次創作グッズの販売は禁止とさせて頂きます。</li>
-        <li>本ガイドラインの内容に対し違反している、もしくは不適切と判断した二次創作物に関して公表の中止、削除をお願いすることがございます。ご了承ください。</li>
-        <li>コンテンツをそのままコピーする行為（またはこれと同視できるような行為）は、二次創作活動とは認められませんので、ご注意ください。</li>
+        <li><a href="index.html#about">ABOUT</a></li>
+        <li><a href="index.html#member">MEMBER</a></li>
+        <li><a href="index.html#audition">AUDITION</a></li>
+        <li><a href="guideline.html">GUIDELINE</a></li>
       </ul>
+    </nav>
+    <button class="menu-btn" id="menu-btn" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
 
-      <h2>2.利用条件</h2>
-      <p>以下のような行為は禁止させて頂きます。</p>
-      <ul>
-        <li>本ガイドラインに反するものや、ライバーまたは著作者のイメージを著しく損なう、または第三者の名誉・品位等を傷つけるもの</li>
-        <li>本コンテンツの動画・画像をそのまま無断転載する行為</li>
-        <li>他の事業の宣伝や広告のために本コンテンツの二次創作作品を利用する行為</li>
-        <li>公式作品であるとの詐称や誤解を招くような表現を含むもの</li>
-        <li>公序良俗に反するまたは反社会的な表現を含むもの</li>
-        <li>その他、当グループが不適切と判断する行為</li>
-      </ul>
+<!-- ガイドライン本体 -->
+<section style="background:#f8f8f8; min-height: 100vh; padding-top: 80px;">
+  <div class="guideline-content">
+    <h1>ガイドライン | ReLaB</h1>
+    <p class="subtitle">ガイドライン – Guideline –</p>
 
-      <h2>3.二次創作作品の利用</h2>
-      <p>本コンテンツの二次創作作品を公開した時点で、当該二次創作作品をReLaB所属のライバーの活動において利用することに同意して頂いたものとみなします。（なお、作品の同一性を損なわない程度に調整・加工等を施す事がございます。）</p>
-      <ul>
-        <li>ライバーより使用に関するご連絡をさせて頂く場合がございます。</li>
-        <li>全ての二次創作作品を活動に利用するものではございません。活動への利用は当グループおよび所属ライバーの判断によるものとさせて頂きます。</li>
-        <li>利用の際に金銭のお支払いは対応致しかねます。また、グッズ制作など直接収益に繋がるような利用は行いません。</li>
-      </ul>
+    <p>当グループのコンテンツをより多くの皆様に親しんで頂くためのガイドラインです。</p>
+    <p>皆様の二次創作によって、運営とライバーだけでなく皆様と一緒にコンテンツを盛り上げていければと存じます。本ガイドラインの内容とその他ルールやマナーを守って、二次創作活動をお楽しみください。</p>
 
-      <h2>4. 配信の切り抜き</h2>
-      <p>本ガイドラインを遵守した切り抜き動画の制作・公開は許諾しております。切り抜き動画をYouTubeなどの動画サイトに掲載する場合は、出典元のリンク・所属ライバーの名前を概要欄に記載してください。</p>
-      <p>なお、動画投稿はご自身の管理のもとに行って頂き、各ライバーのチャンネル等からの投稿は原則対応致しかねます。</p>
-      <p>また、以下の内容を含む切り抜き動画は投稿を禁止しています。</p>
-      <ul>
-        <li>YouTubeメンバーシップやFANBOXなど、特定の会員のみが視聴できる限定動画の切り抜き</li>
-        <li>削除された動画の切り抜き</li>
-        <li>ロゴなどの公式素材を利用した、公式動画との混同を招く恐れがあるもの</li>
-      </ul>
+    <h2>1.総則</h2>
+    <ul>
+      <li>ReLaB所属ライバーのキャラクター及びこれに関するイラスト（以下「本コンテンツ」という）の著作権は、著作者であるイラストレーターに帰属します。</li>
+      <li>皆様が本コンテンツの二次的創作物を公開した時点で、本ガイドラインの内容のすべてに同意をしていただいたものとみなします。</li>
+      <li>二次創作活動は個人での利用のみとし、本ガイドラインの内容に沿う形であれば、ReLaBへの申請や連絡は不要です。</li>
+      <li>二次創作活動によって発生する収益は、個人の趣味の範囲内での活動であれば許容されます。ただし、ファン活動の範囲を超えた事業目的での二次創作は禁止させて頂きます。</li>
+      <li>公式の販売物と誤解を招くような二次創作グッズの販売は禁止とさせて頂きます。</li>
+      <li>本ガイドラインの内容に対し違反している、もしくは不適切と判断した二次創作物に関して公表の中止、削除をお願いすることがございます。ご了承ください。</li>
+      <li>コンテンツをそのままコピーする行為（またはこれと同視できるような行為）は、二次創作活動とは認められませんので、ご注意ください。</li>
+    </ul>
 
-      <h2>5. その他注意事項</h2>
-      <ul>
-        <li>二次創作行為が要因で生じたいかなるトラブル・損失・損害について、当グループは一切の責任を負いません。</li>
-        <li>本規約の内容は、予告なく変更することがあります。二次創作活動を行うにあたっては、常に最新のガイドラインの内容をご確認くださいようお願いします。</li>
-        <li>本ガイドラインは、個人の皆様に向けたものです。法人の方は個別に <a href="https://relab.work/contact/" target="_blank">お問い合わせ</a> ください。</li>
-      </ul>
+    <h2>2.利用条件</h2>
+    <p>以下のような行為は禁止させて頂きます。</p>
+    <ul>
+      <li>本ガイドラインに反するものや、ライバーまたは著作者のイメージを著しく損なう、または第三者の名誉・品位等を傷つけるもの</li>
+      <li>本コンテンツの動画・画像をそのまま無断転載する行為</li>
+      <li>他の事業の宣伝や広告のために本コンテンツの二次創作作品を利用する行為</li>
+      <li>公式作品であるとの詐称や誤解を招くような表現を含むもの</li>
+      <li>公序良俗に反するまたは反社会的な表現を含むもの</li>
+      <li>その他、当グループが不適切と判断する行為</li>
+    </ul>
 
-      <div class="footer-note">
-        <p>当グループのコンテンツをより多くの方にお楽しみに頂くために、ルールやマナーの遵守をお願いしております。ご理解とご協力のほど何卒よろしくお願いいたします。</p>
-      </div>
+    <h2>3.二次創作作品の利用</h2>
+    <p>本コンテンツの二次創作作品を公開した時点で、当該二次創作作品をReLaB所属のライバーの活動において利用することに同意して頂いたものとみなします。（なお、作品の同一性を損なわない程度に調整・加工等を施す事がございます。）</p>
+    <ul>
+      <li>ライバーより使用に関するご連絡をさせて頂く場合がございます。</li>
+      <li>全ての二次創作作品を活動に利用するものではございません。活動への利用は当グループおよび所属ライバーの判断によるものとさせて頂きます。</li>
+      <li>利用の際に金銭のお支払いは対応致しかねます。また、グッズ制作など直接収益に繋がるような利用は行いません。</li>
+    </ul>
+
+    <h2>4. 配信の切り抜き</h2>
+    <p>本ガイドラインを遵守した切り抜き動画の制作・公開は許諾しております。切り抜き動画をYouTubeなどの動画サイトに掲載する場合は、出典元のリンク・所属ライバーの名前を概要欄に記載してください。</p>
+    <p>なお、動画投稿はご自身の管理のもとに行って頂き、各ライバーのチャンネル等からの投稿は原則対応致しかねます。</p>
+    <p>また、以下の内容を含む切り抜き動画は投稿を禁止しています。</p>
+    <ul>
+      <li>YouTubeメンバーシップやFANBOXなど、特定の会員のみが視聴できる限定動画の切り抜き</li>
+      <li>削除された動画の切り抜き</li>
+      <li>ロゴなどの公式素材を利用した、公式動画との混同を招く恐れがあるもの</li>
+    </ul>
+
+    <h2>5. その他注意事項</h2>
+    <ul>
+      <li>二次創作行為が要因で生じたいかなるトラブル・損失・損害について、当グループは一切の責任を負いません。</li>
+      <li>本規約の内容は、予告なく変更することがあります。二次創作活動を行うにあたっては、常に最新のガイドラインの内容をご確認くださいようお願いします。</li>
+      <li>本ガイドラインは、個人の皆様に向けたものです。法人の方は個別に <a href="https://relab.work/contact/" target="_blank">お問い合わせ</a> ください。</li>
+    </ul>
+
+    <div class="footer-note">
+      <p>当グループのコンテンツをより多くの方にお楽しみに頂くために、ルールやマナーの遵守をお願いしております。ご理解とご協力のほど何卒よろしくお願いいたします。</p>
     </div>
   </div>
 </section>
 
-<!-- フッター（index.htmlと同じものをそのままコピー） -->
+<!-- フッター -->
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="relab_logo.webp" alt="ReLaB" width="150" height="27" loading="lazy">
+    </div>
+    <nav class="footer-nav">
+      <a href="privacy-policy.html">プライバシーポリシー</a>
+      <a href="guideline.html">ガイドライン</a>
+    </nav>
+    <p class="copyright">Copyright © 2021-2026 ReLaB All Rights Reserved.</p>
+  </div>
+</footer>
 
-<!-- TOPへボタン（index.htmlと同じ） -->
+<!-- TOPへ -->
+<button id="pagetop" aria-label="ページトップへ">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  <span>TOP</span>
+</button>
 
 <script>
-// index.htmlと同じスクリプトをすべてここに貼り付けてください
-// （ヘッダースクロール、スマホメニュー、フェードイン、スムーススクロールなど）
+// スクリプト（index.htmlと同じ安定版）
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    header.classList.add('scrolled');
+  } else {
+    header.classList.remove('scrolled');
+  }
+}, { passive: true });
+
+const menuBtn = document.getElementById('menu-btn');
+const spMenu = document.getElementById('sp-menu');
+const spOverlay = document.getElementById('sp-overlay');
+const spClose = document.getElementById('sp-close');
+
+function openMenu() {
+  spMenu.classList.add('open');
+  spOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  spMenu.classList.remove('open');
+  spOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+menuBtn.addEventListener('click', openMenu);
+spClose.addEventListener('click', closeMenu);
+spOverlay.addEventListener('click', closeMenu);
+spMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+const pagetop = document.getElementById('pagetop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    pagetop.classList.add('visible');
+  } else {
+    pagetop.classList.remove('visible');
+  }
+}, { passive: true });
+pagetop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 </script>
 </body>
 </html>
