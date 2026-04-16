@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@600&family=Montserrat&display=swap" rel="stylesheet">
 
 <style>
-/* ===== 共通スタイル（index.htmlからほぼそのまま） ===== */
+/* ===== リセット & ベース ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -20,7 +20,7 @@
   --color-header-bg: #fff;
   --color-footer-bg: #222;
   --color-footer-text: #aaa;
-  --swl-color_shadow:rgba(0,0,0,.12);
+  --swl-color_shadow: rgba(0,0,0,.12);
   --container: 1200px;
 }
 
@@ -40,7 +40,7 @@ img { max-width: 100%; height: auto; display: block; }
 ul { list-style: none; }
 h2 { font-family: 'Montserrat', sans-serif; }
 
-/* ヘッダー（indexと同じ） */
+/* ===== ヘッダー ===== */
 #header {
   position: fixed;
   top: 0;
@@ -65,8 +65,8 @@ h2 { font-family: 'Montserrat', sans-serif; }
 .logo img { height: 40px; width: auto; }
 .logo .logo-color { display: block; }
 
-.header-inner nav ul { display: flex; gap: 32px; }
-.header-inner nav a {
+nav ul { display: flex; gap: 32px; }
+nav a {
   font-family: 'Montserrat', sans-serif;
   font-size: 13px;
   letter-spacing: 0.05em;
@@ -74,7 +74,7 @@ h2 { font-family: 'Montserrat', sans-serif; }
   position: relative;
   padding-bottom: 4px;
 }
-.header-inner nav a::after {
+nav a::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -86,9 +86,9 @@ h2 { font-family: 'Montserrat', sans-serif; }
   transform: scaleX(0);
   transition: transform 0.3s;
 }
-.header-inner nav a:hover::after { transform: scaleX(1); }
+nav a:hover::after { transform: scaleX(1); }
 
-/* スマホメニュー（indexと同じ） */
+/* スマホメニュー */
 .menu-btn {
   display: none;
   flex-direction: column;
@@ -152,7 +152,7 @@ h2 { font-family: 'Montserrat', sans-serif; }
 /* ===== ガイドライン専用 ===== */
 .guideline-wrapper {
   background: #f8f8f8;
-  padding-top: 64px; /* ヘッダー後の余白を多めに（元のWPに近づける） */
+  padding-top: 64px;
   padding-bottom: 40px;
   min-height: 100vh;
 }
@@ -168,28 +168,26 @@ h2 { font-family: 'Montserrat', sans-serif; }
   justify-content: center;
 }
 
+.page-title-area span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .page-title-area h1 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 2.6rem;
-  margin-bottom: 8px;
+  font-size: 1.5em;        /* あなたのテスト.htmlで最終的に適用されている値に統一 */
+  margin: 0;
+  color: #fff;
+  text-shadow: 0px 0px 5px rgba(0,0,0,0.8);
+  line-height: 1;
 }
 
 .page-title-area .subtitle {
   font-size: 1.2rem;
-  color: var(--color-main);
-}
-.page-title-area h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5em;
-  margin-bottom: 8px;
-}
-.page-title-area h1,.page-title-area .subtitle {
-  color: #fff;
+  color: #fff;             /* 白に戻す（元のWPと同じ） */
   text-shadow: 0px 0px 5px rgba(0,0,0,0.8);
-}
-.page-title-area span{
-  display: flex;
-  align-items: center;
+  margin-top: 4px;
 }
 
 /* タブ */
@@ -222,7 +220,6 @@ h2 { font-family: 'Montserrat', sans-serif; }
 
 .tab-btn.active {
   color: var(--color-main);
-  background: #fff;
 }
 
 .tab-btn.active::after {
@@ -259,6 +256,7 @@ h2 { font-family: 'Montserrat', sans-serif; }
 .tab-content li {
   margin-bottom: 0.9em;
 }
+
 /* ===== フッター ===== */
 #footer {
   background: var(--color-footer-bg);
@@ -279,7 +277,7 @@ h2 { font-family: 'Montserrat', sans-serif; }
   margin-bottom: 20px;
 }
 .footer-nav a { color: var(--color-footer-text); font-size: 13px; }
-.footer-nav a:hover { color: #fff; opacity: 1; }
+.footer-nav a:hover { color: #fff; }
 .copyright { font-size: 12px; }
 
 /* ===== TOPボタン ===== */
@@ -309,6 +307,7 @@ h2 { font-family: 'Montserrat', sans-serif; }
 #pagetop.visible { opacity: 1; visibility: visible; }
 #pagetop:hover { background: #00a888; }
 #pagetop svg { width: 16px; height: 16px; }
+
 /* レスポンシブ */
 @media (max-width: 959px) {
   .guideline-wrapper { padding-top: 100px; }
@@ -488,51 +487,50 @@ h2 { font-family: 'Montserrat', sans-serif; }
 </button>
 
 <script>
+// スマホメニュー
+const menuBtn = document.getElementById('menu-btn');
+const spMenu = document.getElementById('sp-menu');
+const spOverlay = document.getElementById('sp-overlay');
+const spClose = document.getElementById('sp-close');
 
-  // スマホメニュー
-  const menuBtn = document.getElementById('menu-btn');
-  const spMenu = document.getElementById('sp-menu');
-  const spOverlay = document.getElementById('sp-overlay');
-  const spClose = document.getElementById('sp-close');
+function openMenu() {
+  spMenu.classList.add('open');
+  spOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  spMenu.classList.remove('open');
+  spOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
 
-  function openMenu() {
-    spMenu.classList.add('open');
-    spOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMenu() {
-    spMenu.classList.remove('open');
-    spOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+menuBtn.addEventListener('click', openMenu);
+spClose.addEventListener('click', closeMenu);
+spOverlay.addEventListener('click', closeMenu);
 
-  menuBtn.addEventListener('click', openMenu);
-  spClose.addEventListener('click', closeMenu);
-  spOverlay.addEventListener('click', closeMenu);
+// タブ切り替え
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
 
-  // タブ切り替え
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
-    });
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
   });
+});
 
-  // TOPボタン
-  const pagetop = document.getElementById('pagetop');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      pagetop.classList.add('visible');
-    } else {
-      pagetop.classList.remove('visible');
-    }
-  }, { passive: true });
-  pagetop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+// TOPボタン
+const pagetop = document.getElementById('pagetop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    pagetop.classList.add('visible');
+  } else {
+    pagetop.classList.remove('visible');
+  }
+}, { passive: true });
+pagetop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 </script>
 </body>
 </html>
