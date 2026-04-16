@@ -155,13 +155,19 @@ nav a:hover::after { transform: scaleX(1); }
   color: var(--color-text);
 }
 
-/* フッター・TOPボタン（簡略版） */
+/* ===== フッター ===== */
 #footer {
   background: var(--color-footer-bg);
   color: var(--color-footer-text);
-  padding: 40px 0 20px;
+}
+.footer-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 40px 24px 20px;
   text-align: center;
 }
+.footer-logo { margin-bottom: 24px; display: flex; justify-content: center; }
+.footer-logo img { height: 27px; width: auto; }
 .footer-nav {
   display: flex;
   justify-content: center;
@@ -169,6 +175,7 @@ nav a:hover::after { transform: scaleX(1); }
   margin-bottom: 20px;
 }
 .footer-nav a { color: var(--color-footer-text); font-size: 13px; }
+.footer-nav a:hover { color: #fff; opacity: 1; }
 .copyright { font-size: 12px; }
 
 #pagetop {
