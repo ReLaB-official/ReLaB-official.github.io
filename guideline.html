@@ -20,6 +20,7 @@
   --color-header-bg: #fff;
   --color-footer-bg: #222;
   --color-footer-text: #aaa;
+  --swl-color_shadow:rgba(0,0,0,.12);
   --container: 1200px;
 }
 
@@ -47,8 +48,10 @@ h2 { font-family: 'Montserrat', sans-serif; }
   width: 100%;
   z-index: 100;
   transition: background 0.4s, box-shadow 0.4s;
-  color: #fff;
+  background: var(--color-header-bg);
+  box-shadow: 0 2px 4px var(--swl-color_shadow);
 }
+
 .header-inner {
   max-width: var(--container);
   margin: 0 auto;
@@ -60,16 +63,18 @@ h2 { font-family: 'Montserrat', sans-serif; }
 }
 
 .logo img { height: 40px; width: auto; }
-.logo .logo-white { display: block; }
-.logo .logo-color { display: none; }
+.logo .logo-color { display: block; }
 
-nav ul { display: flex; gap: 32px; }
-nav a {
+.header-inner nav ul { display: flex; gap: 32px; }
+.header-inner nav a {
   font-family: 'Montserrat', sans-serif;
   font-size: 13px;
   letter-spacing: 0.05em;
+  color: inherit;
   position: relative;
   padding-bottom: 4px;
+}
+.header-inner nav a::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -81,6 +86,7 @@ nav a {
   transform: scaleX(0);
   transition: transform 0.3s;
 }
+.header-inner nav a:hover::after { transform: scaleX(1); }
 
 /* スマホメニュー（indexと同じ） */
 .menu-btn {
@@ -143,66 +149,23 @@ nav a {
   color: var(--color-text);
 }
 
-/* ===== フッター ===== */
-#footer {
-  background: var(--color-footer-bg);
-  color: var(--color-footer-text);
-}
-.footer-inner {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 40px 24px 20px;
-  text-align: center;
-}
-.footer-logo { margin-bottom: 24px; display: flex; justify-content: center; }
-.footer-logo img { height: 27px; width: auto; }
-.footer-nav {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-bottom: 20px;
-}
-.footer-nav a { color: var(--color-footer-text); font-size: 13px; }
-.footer-nav a:hover { color: #fff; opacity: 1; }
-.copyright { font-size: 12px; }
-
-#pagetop {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  width: 48px;
-  height: 48px;
-  background: var(--color-main);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  font-size: 10px;
-  gap: 2px;
-  box-shadow: 1px 1px 6px rgba(0,0,0,0.4);
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s;
-  z-index: 50;
-}
-#pagetop.visible { opacity: 1; visibility: visible; }
-
 /* ===== ガイドライン専用 ===== */
 .guideline-wrapper {
   background: #f8f8f8;
-  padding-top: 120px; /* ヘッダー後の余白を多めに（元のWPに近づける） */
+  padding-top: 64px; /* ヘッダー後の余白を多めに（元のWPに近づける） */
+  padding-bottom: 40px;
   min-height: 100vh;
 }
 
 .page-title-area {
   text-align: center;
-  padding: 40px 20px 30px;
-  background: #fff;
-  margin-bottom: 40px;
+  height: 240px;
+  background-image: url("header_light.webp");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .page-title-area h1 {
@@ -214,14 +177,29 @@ nav a {
 .page-title-area .subtitle {
   font-size: 1.2rem;
   color: var(--color-main);
-  font-weight: 600;
+}
+.page-title-area h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5em;
+  margin-bottom: 8px;
+}
+.page-title-area h1,.page-title-area .subtitle {
+  color: #fff;
+  text-shadow: 0px 0px 5px rgba(0,0,0,0.8);
+}
+.page-title-area span{
+  display: flex;
+  align-items: center;
 }
 
 /* タブ */
 .tab-container {
   max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px 60px;
+  margin: 40px auto;
+  padding: 20px 60px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 .tab-buttons {
@@ -259,10 +237,7 @@ nav a {
 
 .tab-content {
   display: none;
-  background: #fff;
   padding: 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 .tab-content.active {
@@ -284,7 +259,56 @@ nav a {
 .tab-content li {
   margin-bottom: 0.9em;
 }
+/* ===== フッター ===== */
+#footer {
+  background: var(--color-footer-bg);
+  color: var(--color-footer-text);
+}
+.footer-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 40px 24px 20px;
+  text-align: center;
+}
+.footer-logo { margin-bottom: 24px; display: flex; justify-content: center; }
+.footer-logo img { height: 27px; width: auto; }
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.footer-nav a { color: var(--color-footer-text); font-size: 13px; }
+.footer-nav a:hover { color: #fff; opacity: 1; }
+.copyright { font-size: 12px; }
 
+/* ===== TOPボタン ===== */
+#pagetop {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  background: var(--color-main);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 10px;
+  gap: 2px;
+  box-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 50;
+}
+#pagetop.visible { opacity: 1; visibility: visible; }
+#pagetop:hover { background: #00a888; }
+#pagetop svg { width: 16px; height: 16px; }
 /* レスポンシブ */
 @media (max-width: 959px) {
   .guideline-wrapper { padding-top: 100px; }
@@ -304,7 +328,7 @@ nav a {
   <button class="sp-close" id="sp-close" aria-label="閉じる">×</button>
   <div style="margin-bottom:12px;font-family:'Montserrat',sans-serif;font-size:12px;color:#aaa;">MENU</div>
   <ul>
-    <li><a href="https://relab-official.github.io">TOP</a></li>
+    <li><a href="https://relab-official.github.io/">TOP</a></li>
     <li><a href="index.html#about">ABOUT</a></li>
     <li><a href="index.html#member">MEMBER</a></li>
     <li><a href="index.html#audition">AUDITION</a></li>
@@ -315,7 +339,7 @@ nav a {
 <!-- ヘッダー -->
 <header id="header">
   <div class="header-inner">
-    <a href="https://relab-official.github.io" class="logo">
+    <a href="https://relab-official.github.io/" class="logo">
       <img class="logo-color" src="logo_navi_col.webp" alt="ReLaB" width="200" height="43">
     </a>
     <nav>
@@ -335,8 +359,10 @@ nav a {
 <!-- ガイドライン本体 -->
 <div class="guideline-wrapper">
   <div class="page-title-area">
-    <h1>ガイドライン</h1>
-    <div class="subtitle">– Guideline –</div>
+    <span>
+      <h1>ガイドライン</h1>
+      <div class="subtitle">– Guideline –</div>
+    </span>
   </div>
 
   <div class="tab-container">
@@ -395,7 +421,7 @@ nav a {
       <ul>
         <li>二次創作行為が要因で生じたいかなるトラブル・損失・損害について、当グループは一切の責任を負いません。</li>
         <li>本規約の内容は、予告なく変更することがあります。二次創作活動を行うにあたっては、常に最新のガイドラインの内容をご確認くださいようお願いします。</li>
-        <li>本ガイドラインは、個人の皆様に向けたものです。<s>法人の方は個別にお問い合わせください。</s></li>
+        <li>本ガイドラインは、個人の皆様に向けたものです。法人の方は個別に <a href="https://relab.work/contact/" target="_blank">お問い合わせ</a> ください。</li>
       </ul>
     </div>
 
@@ -462,50 +488,51 @@ nav a {
 </button>
 
 <script>
-// スマホメニュー
-const menuBtn = document.getElementById('menu-btn');
-const spMenu = document.getElementById('sp-menu');
-const spOverlay = document.getElementById('sp-overlay');
-const spClose = document.getElementById('sp-close');
 
-function openMenu() {
-  spMenu.classList.add('open');
-  spOverlay.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeMenu() {
-  spMenu.classList.remove('open');
-  spOverlay.classList.remove('open');
-  document.body.style.overflow = '';
-}
+  // スマホメニュー
+  const menuBtn = document.getElementById('menu-btn');
+  const spMenu = document.getElementById('sp-menu');
+  const spOverlay = document.getElementById('sp-overlay');
+  const spClose = document.getElementById('sp-close');
 
-menuBtn.addEventListener('click', openMenu);
-spClose.addEventListener('click', closeMenu);
-spOverlay.addEventListener('click', closeMenu);
-
-// タブ切り替え
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-
-    btn.classList.add('active');
-    document.getElementById(btn.dataset.tab).classList.add('active');
-  });
-});
-
-// TOPボタン
-const pagetop = document.getElementById('pagetop');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 300) {
-    pagetop.classList.add('visible');
-  } else {
-    pagetop.classList.remove('visible');
+  function openMenu() {
+    spMenu.classList.add('open');
+    spOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
-}, { passive: true });
-pagetop.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+  function closeMenu() {
+    spMenu.classList.remove('open');
+    spOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  menuBtn.addEventListener('click', openMenu);
+  spClose.addEventListener('click', closeMenu);
+  spOverlay.addEventListener('click', closeMenu);
+
+  // タブ切り替え
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // TOPボタン
+  const pagetop = document.getElementById('pagetop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      pagetop.classList.add('visible');
+    } else {
+      pagetop.classList.remove('visible');
+    }
+  }, { passive: true });
+  pagetop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 </script>
 </body>
 </html>
