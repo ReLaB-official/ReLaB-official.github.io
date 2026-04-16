@@ -49,12 +49,6 @@ h2 { font-family: 'Montserrat', sans-serif; }
   transition: background 0.4s, box-shadow 0.4s;
   color: #fff;
 }
-#header.scrolled {
-  background: var(--color-header-bg);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  color: var(--color-text);
-}
-
 .header-inner {
   max-width: var(--container);
   margin: 0 auto;
@@ -68,8 +62,6 @@ h2 { font-family: 'Montserrat', sans-serif; }
 .logo img { height: 40px; width: auto; }
 .logo .logo-white { display: block; }
 .logo .logo-color { display: none; }
-#header.scrolled .logo .logo-white { display: none; }
-#header.scrolled .logo .logo-color { display: block; }
 
 nav ul { display: flex; gap: 32px; }
 nav a {
@@ -78,8 +70,6 @@ nav a {
   letter-spacing: 0.05em;
   position: relative;
   padding-bottom: 4px;
-}
-nav a::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -91,7 +81,6 @@ nav a::after {
   transform: scaleX(0);
   transition: transform 0.3s;
 }
-nav a:hover::after { transform: scaleX(1); }
 
 /* スマホメニュー（indexと同じ） */
 .menu-btn {
@@ -327,7 +316,6 @@ nav a:hover::after { transform: scaleX(1); }
 <header id="header">
   <div class="header-inner">
     <a href="https://relab-official.github.io" class="logo">
-      <img class="logo-white" src="logo_navi_col.webp" alt="ReLaB" width="200" height="43">
       <img class="logo-color" src="logo_navi_col.webp" alt="ReLaB" width="200" height="43">
     </a>
     <nav>
@@ -474,16 +462,6 @@ nav a:hover::after { transform: scaleX(1); }
 </button>
 
 <script>
-// ヘッダースクロール
-const header = document.getElementById('header');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 60) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
-  }
-}, { passive: true });
-
 // スマホメニュー
 const menuBtn = document.getElementById('menu-btn');
 const spMenu = document.getElementById('sp-menu');
