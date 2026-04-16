@@ -221,6 +221,71 @@ nav a:hover::after { transform: scaleX(1); }
   margin-bottom: 0.9em;
 }
 
+/* ===== フッター ===== */
+#footer {
+  background: var(--color-footer-bg);
+  color: var(--color-footer-text);
+}
+.footer-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 40px 24px 20px;
+  text-align: center;
+}
+.footer-logo { 
+  margin-bottom: 24px; 
+  display: flex; 
+  justify-content: center; 
+}
+.footer-logo img { 
+  height: 27px; 
+  width: auto; 
+}
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.footer-nav a { 
+  color: var(--color-footer-text); 
+  font-size: 13px; 
+}
+.footer-nav a:hover { 
+  color: #fff; 
+}
+.copyright { 
+  font-size: 12px; 
+}
+
+/* ===== TOPボタン ===== */
+#pagetop {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  background: var(--color-main);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 10px;
+  gap: 2px;
+  box-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 50;
+}
+#pagetop.visible { opacity: 1; visibility: visible; }
+#pagetop:hover { background: #00a888; }
+#pagetop svg { width: 16px; height: 16px; }
+
 /* レスポンシブ */
 @media (max-width: 959px) {
   .guideline-wrapper { padding-top: 100px; }
